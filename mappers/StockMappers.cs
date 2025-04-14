@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using webapi.dtos.Stock;
 using webapi.models;
+
 
 namespace webapi.mappers
 {
@@ -20,6 +22,17 @@ namespace webapi.mappers
                 LastDiv     = stockModel.LastDiv,
                 Id_Industry = stockModel.Id_Industry,
                 MarketCap   = stockModel.MarketCap
+            };
+        }
+        public static Stock ToStockFromCreateDto(this CreateStockRequestDto stockDto){
+            return new Stock
+            {
+                Symbol      = stockDto.Symbol,
+                CompanyName = stockDto.CompanyName,
+                Purchase    = stockDto.Purchase,
+                LastDiv     = stockDto.LastDiv,
+                Id_Industry = stockDto.Id_Industry,
+                MarketCap   = stockDto.MarketCap
             };
         }
     }

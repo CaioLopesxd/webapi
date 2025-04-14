@@ -14,12 +14,12 @@ var password = Environment.GetEnvironmentVariable("DB_PASSWORD");
 var connectionString = $"Server={server};Database={database};User Id={user};Password={password};";
 builder.Configuration["ConnectionStrings:DefaultConnection"] = connectionString;
 
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => {
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
@@ -27,8 +27,8 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();            
-    app.UseSwaggerUI();          
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
