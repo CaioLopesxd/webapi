@@ -22,7 +22,7 @@ namespace webapi.data
                 .WithMany(s => s.Comments)
                 .HasForeignKey(c => c.Id_Stock)
                 .HasConstraintName("FK_Comment_Stock")
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Stock>()
                 .HasOne(s => s.Industry)
