@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using webapi.dtos.Comment;
 using webapi.models;
 
 namespace webapi.dtos.Stock
@@ -14,7 +15,8 @@ namespace webapi.dtos.Stock
         public string CompanyName { get; set; } = string.Empty;
         public decimal Purchase { get; set; }
         public decimal LastDiv { get; set; }
-        public uint Id_Industry { get; set; } 
+        public uint Id_Industry { get; set; }
         public long MarketCap { get; set; }
+        public List<CommentDto>? Comments { get; set; }
     }
 }

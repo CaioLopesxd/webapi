@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using webapi.data;
+using webapi.dtos.Comment;
 using webapi.dtos.Stock;
 using webapi.interfaces;
 using webapi.models;
@@ -20,13 +21,14 @@ namespace webapi.repository
         }
         public Task<List<Stock>> GetAllStocks()
         {
-            return _context.Stocks.ToListAsync();
+            return _context.Stocks.Include(c => c.Comments).ToListAsync();
         }
         public async Task<Stock?> GetByIdStock(uint id)
         {
             return await _context.Stocks
-                        .FromSqlRaw("SELECT Stocks.Id_Stock, Stocks.Symbol, Stocks.CompanyName, Stocks.Purchase, Stocks.LastDiv, Stocks.MarketCap, Stocks.Id_Industry FROM Stocks WHERE Stocks.Id_Stock = {0}", id)
-                        .FirstOrDefaultAsync();
+                                 .Include(c => c.Comments)
+                                 .FirstOrDefaultAsync(s => s.Id_Stock == id);
+
         }
 
         public async Task<Stock> CreateStock(Stock stock)
@@ -64,6 +66,11 @@ namespace webapi.repository
             await _context.SaveChangesAsync();
 
             return stockModel;
+        }
+
+        public Task<bool> StockExists(uint id)
+        {
+            return _context.Stocks.AnyAsync(s => s.Id_Stock == id);
         }
     }
 }

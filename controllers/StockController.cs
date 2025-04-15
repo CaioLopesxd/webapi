@@ -36,9 +36,9 @@ namespace webapi.controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdStock([FromRoute] int id)
+        public async Task<IActionResult> GetByIdStock([FromRoute] uint id)
         {
-            var stock = await _stockRepository.GetByIdStock((uint)id);
+            var stock = await _stockRepository.GetByIdStock(id);
 
             if (stock == null)
             {

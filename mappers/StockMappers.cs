@@ -21,7 +21,8 @@ namespace webapi.mappers
                 Purchase    = stockModel.Purchase,
                 LastDiv     = stockModel.LastDiv,
                 Id_Industry = stockModel.Id_Industry,
-                MarketCap   = stockModel.MarketCap
+                MarketCap   = stockModel.MarketCap,
+                Comments    = stockModel.Comments.Select(c => c.ToCommentDto()).ToList(),
             };
         }
         public static Stock ToStockFromCreateDto(this CreateStockRequestDto stockDto){
