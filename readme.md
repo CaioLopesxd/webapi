@@ -51,6 +51,22 @@ dotnet ef migrations add init
 dotnet ef database update
 ```
 
+### 6️⃣ Abra seu banco de dados e execute esta query 
+
+```bash
+-- Populando Industries
+INSERT INTO Industries (Description) VALUES ('Technology');         -- 1
+INSERT INTO Industries (Description) VALUES ('Automotive');         -- 2
+INSERT INTO Industries (Description) VALUES ('Healthcare');         -- 3
+INSERT INTO Industries (Description) VALUES ('Finance');            -- 4
+INSERT INTO Industries (Description) VALUES ('Retail');             -- 5
+INSERT INTO Industries (Description) VALUES ('Energy');             -- 6
+INSERT INTO Industries (Description) VALUES ('Telecommunications'); -- 7
+INSERT INTO Industries (Description) VALUES ('Consumer Goods');     -- 8
+INSERT INTO Industries (Description) VALUES ('Transportation');     -- 9
+INSERT INTO Industries (Description) VALUES ('Entertainment');      -- 10
+```
+
 ### 6️⃣ Rode o projeto
 
 ```bash
@@ -71,7 +87,7 @@ Seu projeto estará rodando em:
 Após rodar o projeto, você pode acessar as rotas da API através do Swagger:
 
 **URL:**  
-`https://localhost:5160/swagger` *(ajuste a porta conforme definido no seu `launchSettings.json`)*
+**`https://localhost:5160/swagger`** *(ajuste a porta conforme definido no seu `launchSettings.json`)*
 
 Com o Swagger, você pode:
 
