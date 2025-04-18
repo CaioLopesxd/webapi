@@ -23,3 +23,5 @@ Migrations/
 
 # SqlAzure
 script_cria_sql_no_azure.sh    
+
+.fake

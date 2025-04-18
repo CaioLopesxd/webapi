@@ -28,6 +28,10 @@ namespace webapi.controllers
 
         public async Task<IActionResult> GetAllStock()
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var stocks = await _stockRepository.GetAllStocks();
 
             var stocksDto = stocks.Select(s => s.ToStockDto()).ToList();
@@ -35,9 +39,13 @@ namespace webapi.controllers
             return Ok(stocksDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetByIdStock([FromRoute] uint id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var stock = await _stockRepository.GetByIdStock(id);
 
             if (stock == null)
@@ -58,9 +66,13 @@ namespace webapi.controllers
         }
 
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> UpdateStock([FromRoute] uint id, [FromBody] UpdateStockRequestDto updateStockDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var stockModel = await _stockRepository.UpdateStock(id, updateStockDto);
 
             if (stockModel == null)
@@ -72,9 +84,13 @@ namespace webapi.controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> DeleteStock([FromRoute] uint id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var stockModel = await _stockRepository.DeleteStock(id);
 
             if (stockModel == null)
