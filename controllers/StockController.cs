@@ -18,8 +18,11 @@ namespace webapi.controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IStockRepository _stockRepository;
-        public StockController(ApplicationDbContext context, IStockRepository stockRepository)
+
+        private readonly IIndustriesRepository _industriesRepository;
+        public StockController(ApplicationDbContext context, IStockRepository stockRepository, IIndustriesRepository industriesRepository)
         {
+            _industriesRepository = industriesRepository;
             _context = context;
             _stockRepository = stockRepository;
         }
@@ -60,6 +63,12 @@ namespace webapi.controllers
         public async Task<IActionResult> CreateStock([FromBody] CreateStockRequestDto createStockDto)
         {
             var stockModel = createStockDto.ToStockFromCreateDto();
+
+            if (!await _industriesRepository.IndustryExists(stockModel.Id_Industry))
+            {
+                return BadRequest("Industry not found");
+            }
+
             await _stockRepository.CreateStock(stockModel);
 
             return CreatedAtAction(nameof(GetByIdStock), new { id = stockModel.Id_Stock }, stockModel.ToStockDto());
@@ -73,6 +82,7 @@ namespace webapi.controllers
             {
                 return BadRequest(ModelState);
             }
+
             var stockModel = await _stockRepository.UpdateStock(id, updateStockDto);
 
             if (stockModel == null)
