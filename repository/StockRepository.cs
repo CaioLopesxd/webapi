@@ -21,14 +21,16 @@ namespace webapi.repository
         }
         public Task<List<Stock>> GetAllStocks()
         {
-            return _context.Stocks.Include(c => c.Comments).ToListAsync();
+            return _context.Stocks.Include(i => i.Industry)
+                                  .Include(i => i.Comments)
+                                  .ToListAsync();
         }
         public async Task<Stock?> GetByIdStock(uint id)
         {
             return await _context.Stocks
                                  .Include(c => c.Comments)
+                                 .Include(i => i.Industry)
                                  .FirstOrDefaultAsync(s => s.Id_Stock == id);
-
         }
 
         public async Task<Stock> CreateStock(Stock stock)

@@ -9,7 +9,7 @@ namespace webapi.interfaces
 {
     public interface ICommentRepository
     {
-        Task<List<Comment>> GetAllComment();
+        Task<List<Comment>> GetAllComments();
         Task<Comment?> GetByIdComment(uint id);
         Task<Comment> CreateComment(Comment commentModel);
         Task<Comment?> UpdateComment(uint id, UpdateCommentRequestDto updateCommentDto);

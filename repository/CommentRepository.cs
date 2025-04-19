@@ -41,7 +41,7 @@ namespace webapi.repository
             return comment;
         }
 
-        public async Task<List<Comment>> GetAllComment()
+        public async Task<List<Comment>> GetAllComments()
         {
             return await _context.Comments
                        .FromSqlRaw("SELECT * FROM comments")

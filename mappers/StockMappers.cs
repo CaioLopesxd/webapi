@@ -15,14 +15,15 @@ namespace webapi.mappers
         {
             return new StockDto
             {
-                Id_Stock    = stockModel.Id_Stock,
-                Symbol      = stockModel.Symbol,
-                CompanyName = stockModel.CompanyName,
-                Purchase    = stockModel.Purchase,
-                LastDiv     = stockModel.LastDiv,
-                Id_Industry = stockModel.Id_Industry,
-                MarketCap   = stockModel.MarketCap,
-                Comments    = stockModel.Comments.Select(c => c.ToCommentDto()).ToList(),
+                Id_Stock            = stockModel.Id_Stock,
+                Symbol              = stockModel.Symbol,
+                CompanyName         = stockModel.CompanyName,
+                Purchase            = stockModel.Purchase,
+                LastDiv             = stockModel.LastDiv,
+                Id_Industry         = stockModel.Id_Industry,
+                IndustryDescription = stockModel.Industry?.Description,
+                MarketCap           = stockModel.MarketCap,
+                Comments            = stockModel.Comments.Select(c => c.ToCommentDto()).ToList(),
             };
         }
         public static Stock ToStockFromCreateDto(this CreateStockRequestDto stockDto){

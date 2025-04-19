@@ -26,12 +26,7 @@ namespace webapi.controllers
         [HttpGet]
         public async Task<IActionResult> GetAllComment()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var comments = await _commentRepository.GetAllComment();
+            var comments = await _commentRepository.GetAllComments();
             var commentsDto = comments.Select(s => s.ToCommentDto()).ToList();
             return Ok(commentsDto);
         }

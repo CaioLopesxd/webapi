@@ -16,6 +16,7 @@ namespace webapi.dtos.Stock
         public decimal Purchase { get; set; }
         public decimal LastDiv { get; set; }
         public uint Id_Industry { get; set; }
+        public string? IndustryDescription { get; set; } = string.Empty;
         public long MarketCap { get; set; }
         public List<CommentDto>? Comments { get; set; }
     }

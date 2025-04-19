@@ -19,7 +19,6 @@ namespace webapi.models
 
         [Column(TypeName = "decimal(18,4)")]
         public decimal LastDiv { get; set; }
-
         public uint Id_Industry { get; set; }
         public Industry? Industry { get; set; }
         public long MarketCap { get; set; }
