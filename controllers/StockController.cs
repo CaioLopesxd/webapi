@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using webapi.data;
 using webapi.dtos.Stock;
+using webapi.helpers;
 using webapi.interfaces;
 using webapi.mappers;
 using webapi.repository;
@@ -29,13 +30,13 @@ namespace webapi.controllers
 
         [HttpGet]
 
-        public async Task<IActionResult> GetAllStock()
+        public async Task<IActionResult> GetAllStock([FromQuery] QueryObject query)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var stocks = await _stockRepository.GetAllStocks();
+            var stocks = await _stockRepository.GetAllStocks(query);
 
             var stocksDto = stocks.Select(s => s.ToStockDto()).ToList();
 
@@ -62,6 +63,10 @@ namespace webapi.controllers
         [HttpPost]
         public async Task<IActionResult> CreateStock([FromBody] CreateStockRequestDto createStockDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var stockModel = createStockDto.ToStockFromCreateDto();
 
             if (!await _industriesRepository.IndustryExists(stockModel.Id_Industry))

@@ -23,6 +23,10 @@ namespace webapi.controllers
         [HttpGet]
         public async Task<IActionResult> GetAllIndustries()
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var industries = await _industriesRepository.GetAllIndustries();
 
             var industriesDto = industries.Select(s => s.ToIndustryDto()).ToList();

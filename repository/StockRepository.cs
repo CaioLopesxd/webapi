@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using webapi.data;
 using webapi.dtos.Comment;
 using webapi.dtos.Stock;
+using webapi.helpers;
 using webapi.interfaces;
 using webapi.models;
 
@@ -19,11 +20,22 @@ namespace webapi.repository
         {
             _context = context;
         }
-        public Task<List<Stock>> GetAllStocks()
+        public async Task<List<Stock>> GetAllStocks(QueryObject query)
         {
-            return _context.Stocks.Include(i => i.Industry)
+            var stocks = _context.Stocks.Include(i => i.Industry)
                                   .Include(i => i.Comments)
-                                  .ToListAsync();
+                                 .AsQueryable();
+            if (!string.IsNullOrEmpty(query.CompanyName))
+            {
+                stocks = stocks.Where(s => s.CompanyName.Contains(query.CompanyName));
+            }
+
+            if (!string.IsNullOrEmpty(query.Symbol))
+            {
+                stocks = stocks.Where(s => s.Symbol.Contains(query.Symbol));
+            }
+
+            return await stocks.ToListAsync();
         }
         public async Task<Stock?> GetByIdStock(uint id)
         {
