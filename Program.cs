@@ -3,15 +3,16 @@ using webapi.data;
 using DotNetEnv;
 using webapi.interfaces;
 using webapi.repository;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Carregar variáveis de ambiente
 Env.Load(".env");
 
-var server   = Environment.GetEnvironmentVariable("DB_SERVER");
+var server = Environment.GetEnvironmentVariable("DB_SERVER");
 var database = Environment.GetEnvironmentVariable("DB_DATABASE");
-var user     = Environment.GetEnvironmentVariable("DB_USER");
+var user = Environment.GetEnvironmentVariable("DB_USER");
 var password = Environment.GetEnvironmentVariable("DB_PASSWORD");
 
 var connectionString = $"Server={server};Database={database};User Id={user};Password={password};";
@@ -33,6 +34,13 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
+
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {

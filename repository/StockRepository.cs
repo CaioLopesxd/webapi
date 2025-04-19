@@ -35,6 +35,24 @@ namespace webapi.repository
                 stocks = stocks.Where(s => s.Symbol.Contains(query.Symbol));
             }
 
+            if (query.SortBy != null)
+            {
+                switch (query.SortBy)
+                {
+                    case StockSortOptions.Symbol:
+                        stocks = query.IsDescending == true
+                            ? stocks.OrderByDescending(s => s.Symbol)
+                            : stocks.OrderBy(s => s.Symbol);
+                        break;
+
+                    case StockSortOptions.CompanyName:
+                        stocks = query.IsDescending == true
+                            ? stocks.OrderByDescending(s => s.CompanyName)
+                            : stocks.OrderBy(s => s.CompanyName);
+                        break;
+                }
+            }
+
             return await stocks.ToListAsync();
         }
         public async Task<Stock?> GetByIdStock(uint id)
