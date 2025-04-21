@@ -106,6 +106,7 @@ namespace webapi.controllers
 
         [HttpPut]
         [Route("{id:int}")]
+        [Authorize]
         public async Task<IActionResult> UpdateComment([FromRoute] uint id, [FromBody] UpdateCommentRequestDto updateCommentDto)
         {
             if (!ModelState.IsValid)
