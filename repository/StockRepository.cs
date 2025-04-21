@@ -23,8 +23,10 @@ namespace webapi.repository
         public async Task<List<Stock>> GetAllStocks(QueryObject query)
         {
             var stocks = _context.Stocks.Include(i => i.Industry)
-                                  .Include(i => i.Comments)
-                                 .AsQueryable();
+                                        .Include(i => i.Comments)
+                                        .ThenInclude(c => c.AppUser)
+                                        .AsQueryable();
+                                        
             if (!string.IsNullOrEmpty(query.CompanyName))
             {
                 stocks = stocks.Where(s => s.CompanyName.Contains(query.CompanyName));

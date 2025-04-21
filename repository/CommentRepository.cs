@@ -45,12 +45,13 @@ namespace webapi.repository
         {
             return await _context.Comments
                        .FromSqlRaw("SELECT * FROM comments")
+                       .Include(a => a.AppUser)
                        .ToListAsync();
         }
 
         public async Task<Comment?> GetByIdComment(uint id)
         {
-            return await _context.Comments.FindAsync(id);
+            return await _context.Comments.Include(a => a.AppUser).FirstOrDefaultAsync(c => c.Id_Comment == id);
         }
 
         public async Task<Comment?> UpdateComment(uint id, UpdateCommentRequestDto updateCommentDto)

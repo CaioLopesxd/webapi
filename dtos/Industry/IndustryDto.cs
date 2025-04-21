@@ -11,5 +11,6 @@ namespace webapi.dtos.Industry
     {
         public string Description { get; set; } = string.Empty;
         public List<StockDto>? Stocks { get; set; }
+        public string CreatedBy { get; set; } = string.Empty;
     }
 }

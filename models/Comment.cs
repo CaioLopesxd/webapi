@@ -17,5 +17,7 @@ namespace webapi.models
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
         public required uint Id_Stock { get; set; }
         public Stock? Stock { get; set; }
+        public string? AppUserId { get; set; }
+        public AppUser? AppUser { get; set; }
     }
 }

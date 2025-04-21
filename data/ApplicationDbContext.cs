@@ -64,6 +64,12 @@ namespace webapi.data
                 .HasForeignKey(s => s.Id_Industry)
                 .HasConstraintName("FK_Stock_Industry")
                 .OnDelete(DeleteBehavior.Restrict);
+
+/*             modelBuilder.Entity<Comment>()
+                        .HasOne(c => c.AppUser)
+                        .WithOne(s => s.Comments)
+                        .HasForeignKey(c => c.AppUserId)
+                        .HasConstraintName("FK_Comment_User"); */
         }
 
     }

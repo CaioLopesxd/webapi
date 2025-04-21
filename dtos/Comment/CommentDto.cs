@@ -12,5 +12,6 @@ namespace webapi.dtos.Comment
         public string Content { get; set; } = string.Empty;
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
         public required uint Id_Stock { get; set; }
+        public string? CreatedBy { get; internal set; }
     }
 }
