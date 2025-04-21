@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace webapi.models
 {
+    [Table("Stocks")]
     public class Stock
     {
         [Key]
@@ -23,6 +24,8 @@ namespace webapi.models
         public Industry? Industry { get; set; }
         public long MarketCap { get; set; }
         public List<Comment> Comments { get; set; } = new List<Comment>();
+        public List<Portifolio> Portifolios { get; set; } = new List<Portifolio>();
+
     }
 
 }

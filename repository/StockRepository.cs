@@ -106,5 +106,10 @@ namespace webapi.repository
         {
             return _context.Stocks.AnyAsync(s => s.Id_Stock == id);
         }
+
+        public async Task<Stock?> GetBySymbol(string symbol)
+        {
+            return await _context.Stocks.FirstOrDefaultAsync(s => s.Symbol == symbol);
+        }
     }
 }
