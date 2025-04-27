@@ -99,3 +99,33 @@ Com o Swagger, você pode:
 > Se não abrir, verifique se o `launchSettings.json` está configurado corretamente.
 
 ---
+
+## 🌐 Testando a API Publicada
+
+Essa API já está publicada, caso queira testala siga os passos abaixo:
+
+### 1️⃣ Acesse o Swagger
+
+A API está disponível publicamente no Swagger através do link:  
+**[https://finshark-1emi.onrender.com/swagger](https://finshark-1emi.onrender.com/swagger)**
+
+### 2️⃣ Explore as Rotas
+
+No Swagger, você pode:
+
+- Visualizar todas as rotas disponíveis  
+- Enviar requisições (**GET**, **POST**, **PUT**, **DELETE**) diretamente pelo navegador  
+- Testar os endpoints com os parâmetros esperados 
+> Verificar se está logado pois algumas ações esperam que você esteja autenticado como post para comentarios 
+
+## 🗂️ Relacionamentos entre Entidades
+
+- **Industry (Indústria)** possui um relacionamento **um-para-muitos** com **Stock (Ações)**.
+  - Uma única indústria pode estar associada a várias ações.
+  - Cada ação pertence a uma única indústria.
+
+- **Stock (Ação)** possui um relacionamento **um-para-muitos** com **Comment (Comentários)**.
+  - Uma única ação pode ter vários comentários de usuários.
+  - Cada comentário está associado a uma única ação.
+
+  
