@@ -19,7 +19,7 @@ Siga os passos abaixo para configurar e executar este projeto localmente.
 
 ```bash
 git clone https://github.com/CaioLopesxd/webapi
-cd seu-repositorio
+cd webapi
 ```
 
 ### 2️⃣ Crie um arquivo `.env` na raiz do projeto
