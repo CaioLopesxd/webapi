@@ -107,7 +107,7 @@ Essa API já está publicada, caso queira testala siga os passos abaixo:
 ### 1️⃣ Acesse o Swagger
 
 A API está disponível publicamente no Swagger através do link:  
-**[https://finshark-1emi.onrender.com/swagger](https://finshark-1emi.onrender.com/swagger)**
+**[https://webapi-5nql.onrender.com](https://webapi-5nql.onrender.com)**
 
 ### 2️⃣ Explore as Rotas
 
